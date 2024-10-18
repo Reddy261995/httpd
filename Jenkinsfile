@@ -1,22 +1,25 @@
 pipeline{
     agent any
     environment{
-        DEPLOY_TO = 'production'
+    DEPLOY_TO = 'XYZ'
     }
     stages{
-        stage("Deploye to dev"){
-           steps{
-            echo "Deploying Dev environment"
-           }
-        }
-        stage("prodDeploy"){
-            when{
-                // Branch codition
-                expression {BRANCH_NAME ==~/(production|stage)/}
+        stage('deployToDev'){
+            steps{
+              echo "Deploy to dev"
             }
-           steps{
-            echo "Deploying to production"
-           }
-        }   
+        }
+        stage('DeploytoProd'){
+            when{
+                anyOf{
+                branch 'production'
+                environment name: 'DEPLOY_TO', value: 'production'
+                }
+            }
+            steps{
+                echo " deploy to prod"
+            }
+        }
     }
+
 }
