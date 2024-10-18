@@ -7,7 +7,7 @@ pipeline{
         stage("prodDeploy"){
             when{
                 not{
-                    equals expected: 'prod', actual: "${DEPLOY_TO}"
+                    equals expected: 'production', actual: "${DEPLOY_TO}"
                 }
             }
             steps{
