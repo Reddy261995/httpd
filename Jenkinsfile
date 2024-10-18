@@ -8,6 +8,7 @@ pipeline{
            steps{
             echo "Deploying Dev environment"
            }
+        }
         stage("prodDeploy"){
             when{
                 // Branch codition
@@ -17,6 +18,5 @@ pipeline{
             echo "Deploying to production"
            }
         }   
-        }
     }
 }
