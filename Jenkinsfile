@@ -1,7 +1,6 @@
 pipeline{
     agent any
-
-        environment{
+    environment{
             DEPLOY_TO = 'production'
         }
     
@@ -15,8 +14,8 @@ pipeline{
             when{
                 allOf{
                     //10 conditons, then all the 10 conditons should be stisfied
-                    branch = 'productin'
-                    environment name: DEPLOY_TO, actual: 'poduction'
+                    branch = 'production'
+                    environment name: DEPLOY_TO, value: 'poduction'
                 }
             }
             steps{
