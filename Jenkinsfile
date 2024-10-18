@@ -14,7 +14,7 @@ pipeline{
             when{
                 allOf{
                     //10 conditons, then all the 10 conditons should be stisfied
-                    branch = 'production'
+                    branch 'production'
                     environment name: DEPLOY_TO, value: 'poduction'
                 }
             }
