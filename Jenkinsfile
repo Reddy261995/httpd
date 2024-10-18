@@ -1,16 +1,17 @@
 pipeline{
-    agent any
+    ageny any
     environment{
         DEPLOY_TO = 'production'
     }
     stages{
-        stage("ProdDeploy"){
-
-        when{
-            equals expected: 5, actual: currentBuild.number 
-        }
+        stage("prodDeploy"){
+            when{
+                not{
+                    equals expected: 'prod', actual: "${DEPLOY_TO}"
+                }
+            }
             steps{
-                echo " Deploying to Production"
+                echo "deploy to production"
             }
         }
     }
