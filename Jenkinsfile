@@ -12,7 +12,7 @@ pipeline{
         stage("prodDeploy"){
             when{
                 // Branch codition
-                expression {BRANCH_NAME ==~/(production|stage)/}
+                expression {BRANCH_NAME ==~ /(production|stage)/}
             }
            steps{
             echo "Deploying to production"
