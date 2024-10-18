@@ -4,15 +4,19 @@ pipeline{
         DEPLOY_TO = 'production'
     }
     stages{
+        stage("Deploye to dev"){
+           steps{
+            echo "Deploying Dev environment"
+           }
         stage("prodDeploy"){
             when{
-                not{
-                    equals expected: 'production', actual: "${DEPLOY_TO}"
-                }
+                // Branch codition
+                expression {BRANCH_NAME ==~/(production|stage)/}
             }
-            steps{
-                echo "deploy to production"
-            }
+           steps{
+            echo "Deploying to production"
+           }
+        }   
         }
     }
 }
