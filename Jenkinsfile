@@ -1,10 +1,17 @@
 pipeline{
-   agent any
-   stages{
-     stage("build"){
-      steps{
-        echo "hi "
-      }
-     }
-   }
+    agent any
+    environment{
+        DEPLOY_TO = 'production'
+    }
+    stages{
+        stage("ProdDeploy"){
+
+        when{
+            equals expected: 5, actual: currentBuild.number 
+        }
+            steps{
+                echo " Deploying to Production"
+            }
+        }
+    }
 }
