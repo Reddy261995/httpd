@@ -1,26 +1,25 @@
 pipeline{
     agent any
     environment{
-            DEPLOY_TO = 'production'
-        }
-    
+    DEPLOY_TO = 'XYZ'
+    }
     stages{
-        stage("DeployToDev"){
+        stage('deployToDev'){
             steps{
-             echo "deploy to Dev"
-            }    
+              echo "Deploy to dev"
+            }
         }
-        stage("DeploytoProd"){
+        stage('DeploytoProd'){
             when{
-                allOf{
-                    //10 conditons, then all the 10 conditons should be stisfied
-                    branch 'production'
-                    environment name: 'DEPLOY_TO', value: 'production'
+                anyOf{
+                branch 'production'
+                environment name: 'DEPLOY_TO', value: 'production'
                 }
             }
             steps{
-                echo "deploy to production"
+                echo " deploy to prod"
             }
-          }
+        }
     }
+
 }
