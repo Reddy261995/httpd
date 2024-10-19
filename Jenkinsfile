@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        MY_SCRET_PASSWORD = credentials(id)
+        MY_SCRET_PASSWORD = credentials('id)
     }
     parameters{
         string(name: 'NAME', defaultValue:'Reddy', description: 'Name of the person')
