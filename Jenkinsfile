@@ -4,7 +4,7 @@ pipeline{
         string(name: 'NAME', defaultValue:'Reddy', description: 'Name of the person')
         text(name:'PARA',defaultValue: '', description: 'Enter hihlevel fixes for the release')
         choice(name:'ENV', choices:['Dev','Test','Prod'], description: 'which env would like')
-        booleanparam(name:'TOOGLE',defaultValue: true, description:'would yo like to scan')
+        booleanParam(name: 'TOOGLE', defaultValue: true, description: 'would yo like to scan')
         password(name:'SECRET',defaultValue:'SECRET', description:'Enter the password')
     }
     stages{
