@@ -7,7 +7,7 @@ pipeline{
             }
 
         }
-        satage('parallelstagescans'){
+        stage('parallelstagescans'){
             parallel{
                 stage ('sonar'){ 
                     steps{
