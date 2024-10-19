@@ -25,7 +25,7 @@ pipeline{
          stage('DeployToProd'){
             when{
                 //VX.X.X
-                tag pattern: "v\\d{1,2}.\\d{1,2}\\.d{1,2}", comparator: "REGEXP"
+                tag pattern: "v\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}", comparator: "REGEXP"
             }
             steps{
                 echo "Deploy to Production"
