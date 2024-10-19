@@ -7,7 +7,7 @@ pipeline{
                 echo " Build the app"
             }
         }
-        satage('Test'){
+        stage('Test'){
             steps{
                echo "testing the app"
             }
