@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        MY_SECRET_PASSWORD = credentials(id) // Make sure 'id' is the correct ID of your credential
+        MY_SECRET_PASSWORD = credentials('id') // Make sure 'id' is the correct ID of your credential
     }
     parameters {
         string(name: 'NAME', defaultValue: 'Reddy', description: 'Name of the person')
