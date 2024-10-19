@@ -1,34 +1,32 @@
 pipeline{
     agent any
-    environment {
-        DEPLOY_TO = 'Xyz'
-    }
     stages{
-        stage('DeployToDev'){
+        stage('Build'){
             steps{
-                echo "Deploy to Dev"
+                echo " build the application"
             }
+
         }
-        stage('DeployToTest'){
-            steps{
-                echo "Deploy to Test"
-            }
-        }
-         stage('DeployToStage'){
-            when{
-                branch 'release/*'
-            }
-            steps{
-                echo "Deploy to Stage"
-            }
-        }
-         stage('DeployToProd'){
-            when{
-                //VX.X.X
-                tag pattern: "v\\d{1,2}.\\d{1,2}\\.d{1,2}", comparator: "REGEXP"
-            }
-            steps{
-                echo "Deploy to Production"
+        satage('parallelstagescans'){
+            parallel{
+                stage ('sonar'){ 
+                    steps{
+                        echo "sonar stage execute"
+                        sleep 20
+                    }
+                }
+                stage ('Fortify'){ 
+                    steps{
+                        echo "sonar fortify execute"
+                        sleep 20
+                    }
+                }
+                stage ('prisma'){ 
+                    steps{
+                        echo "sonar prisma  execute"
+                        sleep 20
+                    }
+                }
             }
         }
     }
