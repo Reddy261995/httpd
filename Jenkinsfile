@@ -1,25 +1,35 @@
 pipeline{
     agent any
-    environment{
-    DEPLOY_TO = 'XYZ'
+    environment {
+        DEPLOY_TO = 'Xyz'
     }
     stages{
-        stage('deployToDev'){
+        stage('DeployToDev'){
             steps{
-              echo "Deploy to dev"
+                echo "Deploy to Dev"
             }
         }
-        stage('DeploytoProd'){
+        stage('DeployToTest'){
+            steps{
+                echo "Deploy to Test"
+            }
+        }
+         stage('DeployToStage'){
             when{
-                anyOf{
-                branch 'production'
-                environment name: 'DEPLOY_TO', value: 'production'
-                }
+                branch 'release/*'
             }
             steps{
-                echo " deploy to prod"
+                echo "Deploy to Stage"
+            }
+        }
+         stage('DeployToProd'){
+            when{
+                //VX.X.X
+                tag pattern: "v\\d{1,2}.\\d{1,2}\\.d{1,2}", comparator: "REGEXP"
+            }
+            steps{
+                echo "Deploy to Production"
             }
         }
     }
-
 }
