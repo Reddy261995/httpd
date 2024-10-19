@@ -1,32 +1,20 @@
 pipeline{
     agent any
+    parameters{
+        string(name: 'NAME', defaultValue:'Reddy', description: 'Name of the person')
+        text(name:'PARA',defaultValue: '', description: 'Enter hihlevel fixes for the release')
+        choice(name:'ENV', choices:['Dev','Test','Prod'], description: 'which env would like')
+        booleanparam(name:'TOOGLE',defaultValue: true, description:'would yo like to scan')
+        password(name:'SECRET',defaultValue:'SECRET', description:'Enter the password')
+    }
     stages{
-        stage('Build'){
+        stage('parametersExample'){
             steps{
-                echo " build the application"
-            }
-
-        }
-        stage('parallelstagescans'){
-            parallel{
-                stage ('sonar'){ 
-                    steps{
-                        echo "sonar stage execute"
-                        sleep 20
-                    }
-                }
-                stage ('Fortify'){ 
-                    steps{
-                        echo "sonar fortify execute"
-                        sleep 20
-                    }
-                }
-                stage ('prisma'){ 
-                    steps{
-                        echo "sonar prisma  execute"
-                        sleep 20
-                    }
-                }
+                echo " wellcome ${params.NAME}"
+                echo " Fixes done are ${params.PARA}"
+                echo " Deploying to ${params.ENV}"
+                echo " are scan heppening ${params.TOOGLE}"
+                echo " The password entered is ${params.SECRET}"
             }
         }
     }
