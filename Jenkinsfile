@@ -1,30 +1,25 @@
 pipeline{
-
-    agent any 
+    agent any
     stages{
-        stage("Build"){
+        stage('Build'){
             steps{
-                echo " Build the app"
+                echo "Building the applicaltion "
             }
         }
-        stage('Test'){
-            steps{
-               echo "testing the app"
-            }
+    }
+    post{
+        // only Run this, when the current popeline or stage has a sucess status
+        sucess{
+           echo "post =====> sucess is triggered"
         }
-        stage('DeployToDev'){
-            steps{
-                echo "Deploying to dev env"
-            }
+        //only runs when the current pipeline or stage is having a failure status
+        failure{
+           echo " post ====> failure got triggered" 
         }
-        stage('DeployToProd'){
-            steps{
-                timeout (time: 300, unit: 'SECONDS'){
-                input message: 'would you like to promote to prod ??', ok: 'yes', submitter: 'anu'
-                }
-                echo "Deploy to prod"
-            }
+        // This will run irrespective of failure or sucess.. meaning everytime
+        always{
+            // block
+            echo " alway got triggerd"
         }
-         
     }
 }
