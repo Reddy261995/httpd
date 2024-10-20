@@ -9,7 +9,7 @@ pipeline{
     }
     post{
         // only Run this, when the current popeline or stage has a sucess status
-        sucess{
+        success{
            echo "post =====> sucess is triggered"
         }
         //only runs when the current pipeline or stage is having a failure status
