@@ -3,7 +3,8 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                echo "Building the applicaltion "
+               // echo "Building the applicaltion "
+                error "creating error msg"
             }
         }
     }
